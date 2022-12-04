@@ -4,28 +4,43 @@ import './Booking.css'
 
 //import Logo from "../images/logo.png"
 import {Link, Navigate} from "react-router-dom"
-import { FaSortAlphaDownAlt } from 'react-icons/fa'
+//import { FaSortAlphaDownAlt } from 'react-icons/fa'
 
 const Booking = () => {
-
+  
   const [inputs,setInputs]=useState({
     fname:"",
     lname:"",
     age:"",
     contact:"",
+    flightname:"",
     source:"",
     destination:"",
-    date:"",
-    class:""
+    boardingdate:"",
+    arrivaldate:"",
+    travelclass:""
   })
-  const [error,setError]= useState(null)
+/*
+  const [fname,setfname]=useState("");
+  const [lname,setlname]=useState("");
+  const [age,setage]=useState("");
+  const [contact,setcontact]=useState("");
+  const [flightname,setflightname]=useState("");
+  const [source,setsource]=useState("");
+  const [destination,setdestination]=useState("");
+  const [boardingdate,setboardingdate]=useState("");
+  const [arrivaldate,setarrivaldate]=useState("");
+  const [travelclass,settravelclass]=useState("");
+  */
+  const [error,setError]= useState(null) //enthina?
+
 
   const handleSubmit= async (e) =>{
 
     e.preventDefault()
     alert('Would you like to confirm your Ticket?')
     try{
-       await axios.post("/booking/",inputs)
+       await axios.post("/booking/:fname",inputs) //thalkaalam fname vechathaan as userid
        Navigate("/thankyou")
     }catch(err){
       setError(err.response.data);
@@ -33,7 +48,7 @@ const Booking = () => {
   }
   
   const handleChange = e=>{
-    setInputs(prev=>({...prev,[e.target.name]:e.target.value}))
+  setInputs(prev=>({...prev,[e.target.name]:e.target.value}))
   }
 
   return (
@@ -49,7 +64,7 @@ const Booking = () => {
           </div>
           <div className="input-bx">
               <span>Last Name </span>
-              <input type="text" name='lname' onChange={handleChange}/>
+              <input type="text" name='lname' onChange={handleChange} />
           </div>
           <div className="input-bx">
               <span>Age </span>
@@ -62,10 +77,6 @@ const Booking = () => {
           <div className="input-bx">
               <span>Flight Name </span>
               <input type="text" name='flight_name' onChange={handleChange}/>
-          </div>
-          <div className="input-bx">
-              <span>Flight Name </span>
-              <input type="text" name='flight_name' />
           </div>
           <div className="input-bx">
               <span>Flying From </span>
@@ -93,10 +104,11 @@ const Booking = () => {
           </div>
           
           <div className="input-bx"> 
-          <Link to="/thankyou">
-            <button type='submit' onClick={handleSubmit} >
-              
+          <Link to="/thankyou" >
+          
+            <button type='submit' onClick={handleSubmit}>                          
                 <h4>Book Ticket</h4></button>
+                
                 </Link>
           </div>
          
