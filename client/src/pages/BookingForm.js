@@ -31,6 +31,10 @@ const Booking = () => {
               <input type="text" name='contact' />
           </div>
           <div className="input-bx">
+              <span>Flight Name </span>
+              <input type="text" name='flight_name' />
+          </div>
+          <div className="input-bx">
               <span>Flying From </span>
               <input type="text" name='source' />
           </div>
@@ -40,7 +44,11 @@ const Booking = () => {
           </div>
           <div className="input-bx">
               <span>Date Of Departure</span>
-              <input type="date" name='date' />
+              <input type="date" name='date_departure' />
+          </div>
+          <div className="input-bx">
+              <span>Date Of Arrival</span>
+              <input type="date" name='date_arrival' />
           </div>
           <div className="input-grp">
               <span>Travel Class </span>
@@ -53,7 +61,7 @@ const Booking = () => {
           
           <div className="input-bx"> 
       <Link to="/thankyou">
-            <button type='submit' >
+            <button type='submit' onClick={() => {alert('Would you like to confirm your Ticket?');}}  >
               
                 <h4>Book Ticket</h4></button>
                 </Link>
